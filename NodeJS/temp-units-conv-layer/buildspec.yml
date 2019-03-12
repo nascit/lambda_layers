@@ -16,7 +16,7 @@ phases:
       - pip install aws-sam-cli
       - sam --version
       # Install dependencies needed for running tests
-      - cd NodeJS/temp-units-conv-layer && npm install & npm audit
+      - cd NodeJS/temp-units-conv-layer && npm install && npm audit
       # Install 'temp-units-conv' library
       - cd dependencies/nodejs && npm install && npm audit
     finally:
