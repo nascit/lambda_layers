@@ -16,9 +16,9 @@ phases:
       - pip install aws-sam-cli
       - sam --version
       # Install dependencies needed for running tests
-      - cd NodeJS/temp-units-conv-layer && npm install
+      - cd NodeJS/temp-units-conv-layer && npm install & npm audit
       # Install 'temp-units-conv' library
-      - cd dependencies/nodejs && npm install
+      - cd dependencies/nodejs && npm install && npm audit
     finally:
       - echo "[Install phase finished]"
   pre_build:
@@ -40,4 +40,4 @@ phases:
 artifacts:
   type: zip
   files:
-    - out.yaml
+    - NodeJS/temp-units-conv-layer/out.yaml
