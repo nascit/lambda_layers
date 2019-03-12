@@ -4,6 +4,7 @@ env:
   variables:
     BUCKET: "sam-nascit"
     AWS_REGION: "us-west-2"
+    STACK_NAME: "temp-units-conv-layer"
 
 phases:
   install:
@@ -27,15 +28,14 @@ phases:
       - aws configure set default.region $AWS_REGION
       - cd ../..
       # Discover and run unit tests in the 'tests' directory
-#      - cd NodeJS/temp-units-conv-layer && npm run test
       - npm run test
-#      - cd NodeJS/temp-units-conv-layer/dependencies/nodejs && npm install
     finally:
       - echo "[Pre-build phase finished]"
   build:
     commands:
-      # Use AWS SAM to package the application
+      # Use AWS SAM to package ane deploy the application
       - sam package --template-file template.yaml --s3-bucket $BUCKET --output-template-file out.yaml --region $AWS_REGION
+      - sam deploy --template-file ./out.yaml --stack-name $STACK_NAME --capabilities CAPABILITY_IAM --region $AWS_REGION
 
 artifacts:
   type: zip
