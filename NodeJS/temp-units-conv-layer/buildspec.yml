@@ -15,6 +15,7 @@ phases:
       - pip install --user aws-sam-cli
       # Install dependencies needed for running tests
       - cd NodeJS/temp-units-conv-layer && npm install
+      - cd dependencies/nodejs && npm install
     finally:
       - echo "[Install phase finished]"
   pre_build:
