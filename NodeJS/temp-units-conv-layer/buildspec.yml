@@ -1,0 +1,38 @@
+version: 0.2
+
+env:
+  parameter-store:
+    BUCKET: "sam-nascit"
+    AWS_REGION: "us-west-2"
+
+phases:
+  install:
+    commands:
+      - echo "[Install phase]"
+      - pip install -U pip
+      # Upgrade AWS CLI to the latest version
+      - pip install --upgrade awscli
+      - pip install --user aws-sam-cli
+      # Install dependencies needed for running tests
+      - npm install
+    finally:
+      - echo "[Install phase finished]"
+  pre_build:
+    commands:
+      - echo "[Pre-build phase]"
+      - aws configure set default.region $AWS_REGION
+      # Discover and run unit tests in the 'tests' directory
+      - npm run test
+      - cd dependencies/nodejs
+      - npm install
+    finally:
+      - echo "[Pre-build phase finished]"
+  build:
+    commands:
+      # Use AWS SAM to package the application
+      - sam package --template-file template.yaml --s3-bucket $BUCKET --output-template-file out.yaml --region $AWS_REGION
+
+artifacts:
+  type: zip
+  files:
+    - out.yaml

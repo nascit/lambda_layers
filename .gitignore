@@ -1,0 +1,12 @@
+*tests/*
+build
+*.pdf
+*.png
+*.svg
+*out.yaml
+*node_modules
+*package-lock.json
+*.idea
+*.idea/*
+*.xml
+*.npmignore
