@@ -22,6 +22,7 @@ phases:
       - echo "[Pre-build phase]"
       - aws configure set default.region $AWS_REGION
       # Discover and run unit tests in the 'tests' directory
+      - cd NodeJS/temp-units-conv-layer
       - npm run test
       - cd dependencies/nodejs
       - npm install
