@@ -1,7 +1,7 @@
 version: 0.2
 
 env:
-  parameter-store:
+  variables:
     BUCKET: "sam-nascit"
     AWS_REGION: "us-west-2"
 
