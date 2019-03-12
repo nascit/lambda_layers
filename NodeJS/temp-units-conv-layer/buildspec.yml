@@ -12,7 +12,8 @@ phases:
       - pip install -U pip
       # Upgrade AWS CLI to the latest version
       - pip install --upgrade awscli
-      - pip install --user aws-sam-cli
+      - pip install aws-sam-cli
+      - sam --version
       # Install dependencies needed for running tests
       - cd NodeJS/temp-units-conv-layer && npm install
       # Install 'temp-units-conv' library
