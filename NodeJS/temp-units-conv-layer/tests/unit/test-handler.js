@@ -13,7 +13,7 @@ describe('Tests index', function () {
 //        const result = await app.lambdaHandler(event, context)
 
         let answerc2f = tuc["c2f"](40);
-        expect(answerc2f).to.equal(104);
+        expect(answerc2f).to.equal(109);
 
         let answerc2k = tuc["c2k"](40);
         expect(answerc2k).to.equal(313.15);
