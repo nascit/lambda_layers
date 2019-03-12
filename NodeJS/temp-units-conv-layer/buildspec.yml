@@ -11,6 +11,7 @@ phases:
     commands:
       - echo "[Install phase]"
       - pip install -U pip
+      - npm install -g npm@latest
       # Upgrade AWS CLI to the latest version
       - pip install --upgrade awscli
       - pip install aws-sam-cli
