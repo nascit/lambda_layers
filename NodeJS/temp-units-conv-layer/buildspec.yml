@@ -15,13 +15,16 @@ phases:
       - pip install --user aws-sam-cli
       # Install dependencies needed for running tests
       - cd NodeJS/temp-units-conv-layer && npm install
+      # Install 'temp-units-conv' library
       - cd dependencies/nodejs && npm install
     finally:
       - echo "[Install phase finished]"
   pre_build:
     commands:
       - echo "[Pre-build phase]"
+      - echo "$AWS_REGION"
       - aws configure set default.region $AWS_REGION
+      - cd ../..
       # Discover and run unit tests in the 'tests' directory
 #      - cd NodeJS/temp-units-conv-layer && npm run test
       - npm run test
